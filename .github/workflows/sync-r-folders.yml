@@ -1,5 +1,5 @@
 # Name for the GitHub Actions workflow
-name: Sync R Folder from App to Package
+name: Sync R Folder from App to Package (Simple)
 
 # Controls when the workflow will run
 on:
@@ -20,38 +20,49 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Step 1: Checks out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Checkout main repository
+      # Step 1: Check out the main RMSTSS repo which contains the source R folder.
+      - name: Checkout Source Repo (RMSTSS)
         uses: actions/checkout@v4
+        with:
+          # This specifically checks out the RMSTSS repository.
+          repository: UTHSC-Zhang/RMSTSS
+          path: main_repo # Checkout into a directory named 'main_repo'
 
-      # Step 2: Copy the contents from the app's R folder to the package's R folder
-      - name: Copy R folder contents
-        run: |
-          # Create the destination directory if it doesn't exist
-          mkdir -p RMSTSS-Package/R
-          # Copy all contents, overwriting existing files
-          cp -rfv RMSTSS-App/R/* RMSTSS-Package/R/
+      # Step 2: Check out the destination RMSTSS-Package repo into a different directory.
+      - name: Checkout Destination Repo (RMSTSS-Package)
+        uses: actions/checkout@v4
+        with:
+          # This specifically checks out the RMSTSS-Package repository.
+          repository: UTHSC-Zhang/RMSTSS-Package
+          path: package_repo # Checkout into a directory named 'package_repo'
+          # Use the PAT to allow pushing changes later.
+          token: ${{ secrets.GH_PAT }}
 
-      # Step 3: Commit and push the changes to the RMSTSS-Package repository
-      - name: Commit and Push to Package Repo
+      # Step 3: Copy the R folder, overwriting the destination.
+      - name: Sync the R folder
         run: |
-          # Navigate into the package repository directory
-          cd RMSTSS-Package
+          # First, remove the old R folder from the destination to ensure a clean copy.
+          rm -rf ./package_repo/R
+          # Now, copy the R folder from the source to the destination.
+          cp -r ./main_repo/RMSTSS-App/R ./package_repo/R
+          echo "R folder successfully synced."
+
+      # Step 4: Commit and push changes if any exist.
+      - name: Commit and Push Changes
+        run: |
+          # Navigate into the destination repository's directory.
+          cd package_repo
           
-          # Configure git with a user name and email for the commit
+          # Configure git user for the commit.
           git config user.name "GitHub Actions Bot"
           git config user.email "actions-bot@github.com"
           
-          # Add all changes to the staging area
-          git add R/
+          # Add all changes to staging.
+          git add -A
           
-          # Commit the changes, but only if there are changes to commit
-          if ! git diff --staged --quiet; then
-            git commit -m "Automated Sync: Update R folder from RMSTSS-App"
-            
-            # Push the changes to the remote repository using the PAT
-            # The GH_PAT is the secret we created earlier
-            git push https://UTHSC-Zhang:${{ secrets.GH_PAT }}@github.com/UTHSC-Zhang/RMSTSS-Package.git HEAD:main
-          else
-            echo "No changes to commit."
-          fi
+          # Commit the changes if there are any, otherwise do nothing.
+          # The '|| true' part ensures the workflow doesn't fail if there's nothing to commit.
+          git commit -m "Automated Sync: Replace R folder from RMSTSS-App" || true
+
+          # Push the changes back to the RMSTSS-Package repository.
+          git push
