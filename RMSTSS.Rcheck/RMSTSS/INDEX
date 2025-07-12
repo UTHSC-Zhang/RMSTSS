@@ -1,0 +1,32 @@
+DC.power.analytical     Analyze Power for RMST Model with Dependent
+                        Censoring (Analytic)
+DC.ss.analytical        Find Sample Size for RMST Model with Dependent
+                        Censoring (Analytic)
+GAM.power.boot          Calculate Power for a Semiparametric Additive
+                        RMST Model via Simulation
+GAM.ss.boot             Find Sample Size for a Semiparametric Additive
+                        RMST Model via Simulation
+MS.power.analytical     Analyze Power for a Multiplicative Stratified
+                        RMST Model (Analytic)
+MS.power.boot           Analyze Power for a Multiplicative Stratified
+                        RMST Model via Simulation
+MS.ss.analytical        Find Sample Size for a Multiplicative
+                        Stratified RMST Model (Analytic)
+MS.ss.boot              Estimate Sample Size for a Multiplicative
+                        Stratified RMST Model via Simulation
+additive.power.analytical
+                        Analyze Power for a Stratified Additive RMST
+                        Model (Analytic)
+additive.ss.analytical
+                        Find Sample Size for a Stratified Additive RMST
+                        Model (Analytic)
+linear.power.analytical
+                        Analyze Power for a Linear RMST Model
+                        (Analytic)
+linear.power.boot       Analyze Power for a Linear RMST Model via
+                        Simulation
+linear.ss.analytical    Find Sample Size for a Linear RMST Model
+                        (Analytic)
+linear.ss.boot          Find Sample Size for a Linear RMST Model via
+                        Simulation
+run_app                 Launch the RMSTdesign Shiny Application
