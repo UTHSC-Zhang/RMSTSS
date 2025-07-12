@@ -732,7 +732,7 @@ Table: Required Sample Size
 > cleanEx()
 > options(digits = 7L)
 > base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  2.42 0.46 2.87 NA NA 
+Time elapsed:  2.62 0.67 3.33 NA NA 
 > grDevices::dev.off()
 null device 
           1 
