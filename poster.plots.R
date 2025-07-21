@@ -15,12 +15,12 @@ df <- data.frame(
 rmst_causal_plot <- ggplot(df, aes(x = time, y = surv, fill = group, color = group)) +
   geom_line(linewidth = 1.5) +
   geom_ribbon(data = subset(df, time <= 70), aes(ymin = 0, ymax = surv), alpha = 0.3) +
-  geom_vline(xintercept = 70, linetype = "dashed", color = "black", linewidth = 1) +
-  annotate("text", x = 70, y = -0.05, label = "L (Restriction Time)", size = 7, color = "black", fontface = "bold") +
+  geom_vline(xintercept = 70, linetype = "dashed", color = "black", linewidth = 1.1) +
+  annotate("text", x = 85, y = 0.8, label = "Restriction Time", size = 7, color = "black", fontface = "bold") +
   scale_fill_manual(values = c("Control" = "tomato", "Treatment" = "dodgerblue")) +
   scale_color_manual(values = c("Control" = "tomato", "Treatment" = "dodgerblue")) +
   labs(
-    title = "RMST Compares Average Survival Between Groups",
+    title = "Average Survival Between Groups",
     subtitle = "The difference in the shaded areas is the treatment benefit",
     x = "Time",
     y = "Survival Probability"
