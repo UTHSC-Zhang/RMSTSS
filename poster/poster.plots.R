@@ -30,4 +30,4 @@ rmst_causal_plot <- ggplot(df, aes(x = time, y = surv, fill = group, color = gro
   coord_cartesian(ylim = c(0, 1))
 
 # Save the plot to a file
-ggsave("rmst_causal_plot.png", plot = rmst_causal_plot, width = 10, height = 7, dpi = 150)
+ggsave("images/rmst_causal_plot.png", plot = rmst_causal_plot, width = 10, height = 7, dpi = 150)
