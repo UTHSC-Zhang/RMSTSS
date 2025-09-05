@@ -1,0 +1,10 @@
+Windows scheduling quick commands (run in an elevated Command Prompt):
+
+# Run every 4 hours, starting now
+schtasks /Create /SC HOURLY /MO 4 /TN "MaintenanceRun" /TR "\"%~dp0maintenance_run.bat\"" /RL HIGHEST
+
+# Run daily at 09:00
+schtasks /Create /SC DAILY /ST 09:00 /TN "MaintenanceRun" /TR "\"%~dp0maintenance_run.bat\"" /RL HIGHEST
+
+To remove the task:
+schtasks /Delete /TN "MaintenanceRun" /F

@@ -1,0 +1,106 @@
+* using log directory 'D:/OneDrive - Florida State University/MyFSU_OneDrive/R-Codes/RMSTSS/RMSTSS.Rcheck'
+* using R version 4.5.1 (2025-06-13 ucrt)
+* using platform: x86_64-w64-mingw32
+* R was compiled by
+    gcc.exe (GCC) 14.2.0
+    GNU Fortran (GCC) 14.2.0
+* running under: Windows 11 x64 (build 26100)
+* using session charset: UTF-8
+* using options '--no-manual --as-cran'
+* checking for file 'RMSTSS/DESCRIPTION' ... OK
+* checking extension type ... Package
+* this is package 'RMSTSS' version '0.1.4'
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... INFO
+Package suggested but not available for checking: 'bibtex'
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for executable files ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking serialization versions ... OK
+* checking whether package 'RMSTSS' can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking for future file timestamps ... OK
+* checking 'build' directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... NOTE
+Non-standard files/directories found at top level:
+  'README.txt' 'gendata.R'
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking code files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... [11s] NOTE
+gen_covariates: no visible global function definition for 'setNames'
+Undefined global functions or variables:
+  setNames
+Consider adding
+  importFrom("stats", "setNames")
+to your NAMESPACE file.
+* checking Rd files ... NOTE
+checkRd: (-1) recipe_quick_aft.Rd:40: Lost braces
+    40 | A recipe list suitable for \\link[=simulate_from_recipe]{simulate_from_recipe}.
+       |                                                         ^
+checkRd: (-1) simulate_from_recipe.Rd:69: Lost braces
+    69 | \\link[=validate_recipe]{validate_recipe}, \\link[=write_recipe_yaml]{write_recipe_yaml}
+       |                         ^
+checkRd: (-1) simulate_from_recipe.Rd:69: Lost braces
+    69 | \\link[=validate_recipe]{validate_recipe}, \\link[=write_recipe_yaml]{write_recipe_yaml}
+       |                                                                      ^
+checkRd: (-1) validate_recipe.Rd:31: Lost braces; missing escapes or markup?
+    31 | \item \code{event_time$model} in {"aft_lognormal","aft_weibull","cox_exp","cox_pwexp"}
+       |                                  ^
+checkRd: (-1) write_recipe_yaml.Rd:10: Lost braces
+    10 | \item{recipe}{A recipe list (see \\link[=simulate_from_recipe]{simulate_from_recipe} examples).}
+       |                                                               ^
+* checking Rd metadata ... OK
+* checking Rd line widths ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking installed files from 'inst/doc' ... OK
+* checking files in 'vignettes' ... OK
+* checking examples ... ERROR
+Running examples in 'RMSTSS-Ex.R' failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: gen_covariates
+> ### Title: Generate covariate matrix/data frame from a recipe
+> ### Aliases: gen_covariates
+> ### Keywords: internal
+> 
+> ### ** Examples
+> 
+> defs <- list(
++   list(name="x", type="continuous", dist="normal", params=list(mean=0, sd=1)),
++   list(name="z", type="categorical", dist="bernoulli", params=list(p=0.3))
++ )
+> X <- gen_covariates(10, list(defs = defs))
+Error in gen_covariates(10, list(defs = defs)) : 
+  could not find function "gen_covariates"
+Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes ... OK
+* checking re-building of vignette outputs ... [287s] OK
+* checking for non-standard things in the check directory ... OK
+* checking for detritus in the temp directory ... OK
+* DONE
+Status: 1 ERROR, 3 NOTEs
