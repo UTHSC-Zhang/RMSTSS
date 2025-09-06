@@ -17,7 +17,7 @@ REM === Step 1: Run del-extra.bat ===
 call :runStep "del-extra.bat"
 
 REM === Step 2: Run push-chng.bat ===
-call :runStep "push-chng.bat"
+call :runStep "git-multi-sync.bat"
 
 call :log "===== Maintenance run completed at %date% %time% with EXITCODE %ERRORLEVEL% ====="
 exit /b %ERRORLEVEL%
