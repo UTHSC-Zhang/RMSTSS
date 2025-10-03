@@ -10,7 +10,7 @@ on:
       - main
     paths:
       # Only run if files inside this directory have changed
-      - 'RMSTSS-App/R/**'
+      - 'RMSTpowerBoost-App/R/**'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -20,20 +20,20 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Step 1: Check out the main RMSTSS repo which contains the source R folder.
-      - name: Checkout Source Repo (RMSTSS)
+      # Step 1: Check out the main RMSTpowerBoost repo which contains the source R folder.
+      - name: Checkout Source Repo (RMSTpowerBoost)
         uses: actions/checkout@v4
         with:
-          # This specifically checks out the RMSTSS repository.
-          repository: UTHSC-Zhang/RMSTSS
+          # This specifically checks out the RMSTpowerBoost repository.
+          repository: UTHSC-Zhang/RMSTpowerBoost
           path: main_repo # Checkout into a directory named 'main_repo'
 
-      # Step 2: Check out the destination RMSTSS-Package repo into a different directory.
-      - name: Checkout Destination Repo (RMSTSS-Package)
+      # Step 2: Check out the destination RMSTpowerBoost-Package repo into a different directory.
+      - name: Checkout Destination Repo (RMSTpowerBoost-Package)
         uses: actions/checkout@v4
         with:
-          # This specifically checks out the RMSTSS-Package repository.
-          repository: UTHSC-Zhang/RMSTSS-Package
+          # This specifically checks out the RMSTpowerBoost-Package repository.
+          repository: UTHSC-Zhang/RMSTpowerBoost-Package
           path: package_repo # Checkout into a directory named 'package_repo'
           # Use the PAT to allow pushing changes later.
           token: ${{ secrets.GH_PAT }}
@@ -44,7 +44,7 @@ jobs:
           # First, remove the old R folder from the destination to ensure a clean copy.
           rm -rf ./package_repo/R
           # Now, copy the R folder from the source to the destination.
-          cp -r ./main_repo/RMSTSS-App/R ./package_repo/R
+          cp -r ./main_repo/RMSTpowerBoost-App/R ./package_repo/R
           echo "R folder successfully synced."
 
       # Step 4: Commit and push changes if any exist.
@@ -62,7 +62,7 @@ jobs:
           
           # Commit the changes if there are any, otherwise do nothing.
           # The '|| true' part ensures the workflow doesn't fail if there's nothing to commit.
-          git commit -m "Automated Sync: Replace R folder from RMSTSS-App" || true
+          git commit -m "Automated Sync: Replace R folder from RMSTpowerBoost-App" || true
 
-          # Push the changes back to the RMSTSS-Package repository.
+          # Push the changes back to the RMSTpowerBoost-Package repository.
           git push
